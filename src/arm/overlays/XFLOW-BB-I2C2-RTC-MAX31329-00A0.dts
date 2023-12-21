@@ -33,8 +33,8 @@
 &am33xx_pinmux {
 	bb_i2c2_pins: pinmux_bb_i2c2_pins {
 		pinctrl-single,pins = <
-			AM33XX_PADCONF(AM335X_PIN_UART1_CTSN, SLEWCTRL_SLOW | PIN_INPUT_PULLUP, MUX_MODE2)	/* uart1_ctsn.i2c2_sda */
-			AM33XX_PADCONF(AM335X_PIN_UART1_RTSN, SLEWCTRL_SLOW | PIN_INPUT_PULLUP, MUX_MODE2)	/* uart1_rtsn.i2c2_scl */
+			AM33XX_PADCONF(AM335X_PIN_UART1_CTSN, SLEWCTRL_SLOW | PIN_INPUT_PULLUP, MUX_MODE3)	/* uart1_ctsn.i2c2_sda */
+			AM33XX_PADCONF(AM335X_PIN_UART1_RTSN, SLEWCTRL_SLOW | PIN_INPUT_PULLUP, MUX_MODE3)	/* uart1_rtsn.i2c2_scl */
 		>;
 	};
 };
