@@ -31,6 +31,7 @@ dtbo-$(CONFIG_ARCH_OMAP2PLUS) += \
 	BBORG_COMMS-00A2.dtbo	\
 	BBORG_FAN-A000.dtbo	\
 	BBORG_RELAY-00A2.dtbo	\
+	XFLOW_RELAY-00A0.dtbo	\
 	BONE-ADC.dtbo	\
 	M-BB-BBG-00A0.dtbo	\
 	M-BB-BBGG-00A0.dtbo	\
