@@ -49,7 +49,7 @@
 };
 
 &{/} {
-	xflow_leds {
+	xflow_relays {
 		pinctrl-names = "default";
 		pinctrl-0 = <&bb_xflow_gpio_relay_pins>;
 

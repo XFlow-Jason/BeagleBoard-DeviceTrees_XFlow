@@ -1,0 +1,57 @@
+
+/dts-v1/;
+/plugin/;
+
+#include <dt-bindings/pinctrl/am33xx.h>
+#include <dt-bindings/gpio/gpio.h>
+
+/*
+ * Helper to show loaded overlays under: /proc/device-tree/chosen/overlays/
+ */
+&{/chosen} {
+	overlays {
+		XFLOW-BB-I2C2-RTC-MAX31329.kernel = __TIMESTAMP__;
+	};
+};
+
+/*
+ * Free up the pins used by the cape from the pinmux helpers.
+ */
+&ocp {
+    P9_20_pinmux { status = "disabled"; };	/* P9_20 (D18) uart1_ctsn.i2c2_sda */
+    P9_19_pinmux { status = "disabled"; };	/* P9_19 (D17) uart1_rtsn.i2c2_scl */
+};
+
+&{/} {
+	aliases {
+		rtc0 = &extrtc;
+		/* find /sys/firmware/devicetree/ | grep rtc@ */
+		rtc1 = "/ocp/interconnect@44c00000/segment@200000/target-module@3e000/rtc@0";
+	};
+};
+
+&am33xx_pinmux {
+	bb_i2c2_pins: pinmux_bb_i2c2_pins {
+		pinctrl-single,pins = <
+			AM33XX_PADCONF(AM335X_PIN_UART1_CTSN, SLEWCTRL_SLOW | PIN_INPUT_PULLUP, MUX_MODE2)	/* uart1_ctsn.i2c2_sda */
+			AM33XX_PADCONF(AM335X_PIN_UART1_RTSN, SLEWCTRL_SLOW | PIN_INPUT_PULLUP, MUX_MODE2)	/* uart1_rtsn.i2c2_scl */
+		>;
+	};
+};
+
+&i2c1 {
+	status = "okay";
+	pinctrl-names = "default";
+	pinctrl-0 = <&bb_i2c2_pins>;
+
+	clock-frequency = <200000>;
+
+	#address-cells = <1>;
+	#size-cells = <0>;
+
+	extrtc: max31329@68 {
+		status = "okay";
+		compatible = "maxim,max31329";
+		reg = <0x68>;
+	};
+};
