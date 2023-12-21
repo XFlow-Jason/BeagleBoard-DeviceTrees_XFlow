@@ -17,6 +17,7 @@
  * Free up the pins used by the cape from the pinmux helpers.
  */
 &ocp {
+    P8_15_pinmux { status = "disabled"; };	/* P8_14 (U13) gpmc_ad15.gpio1_15 */
     P8_27_pinmux { status = "disabled"; };	/* P8_27 (U5) lcd_vsync.gpio2_22 */
     P8_28_pinmux { status = "disabled"; };	/* P8_28 (V5) lcd_pclk.gpio2_24 */
     P8_29_pinmux { status = "disabled"; };	/* P8_29 (R5) lcd_hsync.gpio2_23 */
@@ -35,6 +36,7 @@
 &am33xx_pinmux {
 	bb_xflow_gpio_input_pins: pinmux_bb_xflow_gpio_input_pins {
 		pinctrl-single,pins = <
+            AM33XX_PADCONF(AM335X_PIN_GPMC_AD15, PIN_INPUT_PULLDOWN, MUX_MODE7)	/* P8_15: Input_supercap */
             AM33XX_PADCONF(AM335X_PIN_LCD_VSYNC, PIN_INPUT_PULLDOWN, MUX_MODE7)	/* P8_27: Input1 */
             AM33XX_PADCONF(AM335X_PIN_LCD_PCLK, PIN_INPUT_PULLDOWN, MUX_MODE7)	/* P8_28: Input2 */
             AM33XX_PADCONF(AM335X_PIN_LCD_HSYNC, PIN_INPUT_PULLDOWN, MUX_MODE7)	/* P8_29: Input3 */
@@ -56,6 +58,12 @@
 	xflow_inputs {
 		pinctrl-names = "default";
 		pinctrl-0 = <&bb_xflow_gpio_input_pins>;
+
+        scinx@1 {
+			label = "xflow-supercap-input-in1";
+			gpios = <&gpio1 15 GPIO_ACTIVE_HIGH>;
+			default-state = "off";
+		};
 
 		inx@1 {
 			label = "xflow-input-in1";
