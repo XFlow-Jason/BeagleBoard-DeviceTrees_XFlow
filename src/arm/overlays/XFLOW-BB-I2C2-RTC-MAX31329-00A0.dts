@@ -44,7 +44,7 @@
 	pinctrl-names = "default";
 	pinctrl-0 = <&bb_i2c2_pins>;
 
-	clock-frequency = <200000>;
+	clock-frequency = <100000>;
 
 	#address-cells = <1>;
 	#size-cells = <0>;
