@@ -35,7 +35,7 @@
 	};
 };
 
-&uart2 {
+&uart5 {
 	/* sudo agetty 115200 ttyS5 */
 	status = "okay";
 	pinctrl-names = "default";
