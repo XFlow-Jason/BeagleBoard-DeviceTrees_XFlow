@@ -95,13 +95,13 @@
 
         inx@7 {
 			label = "xflow-input-in7";
-			gpios = <&gpio2 09 GPIO_ACTIVE_HIGH>;
+			gpios = <&gpio2 9 GPIO_ACTIVE_HIGH>;
 			default-state = "off";
 		};
 
         inx@8 {
 			label = "xflow-input-in8";
-			gpios = <&gpio2 08 GPIO_ACTIVE_HIGH>;
+			gpios = <&gpio2 8 GPIO_ACTIVE_HIGH>;
 			default-state = "off";
 		};
 
