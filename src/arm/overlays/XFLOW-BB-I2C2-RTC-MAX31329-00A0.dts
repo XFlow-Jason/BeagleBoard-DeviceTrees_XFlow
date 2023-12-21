@@ -39,7 +39,7 @@
 	};
 };
 
-&i2c1 {
+&i2c2 {
 	status = "okay";
 	pinctrl-names = "default";
 	pinctrl-0 = <&bb_i2c2_pins>;
