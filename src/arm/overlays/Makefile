@@ -27,6 +27,7 @@ dtbo-$(CONFIG_ARCH_OMAP2PLUS) += \
 	BB-UART1-00A0.dtbo	\
 	BB-UART2-00A0.dtbo	\
 	BB-UART4-00A0.dtbo	\
+	BB-UART5-00A0.dtbo	\
 	BBORG_COMMS-00A2.dtbo	\
 	BBORG_FAN-A000.dtbo	\
 	BBORG_RELAY-00A2.dtbo	\
