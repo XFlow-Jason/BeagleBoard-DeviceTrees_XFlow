@@ -7,6 +7,7 @@
 /plugin/;
 
 #include <dt-bindings/pinctrl/am33xx.h>
+#include <dt-bindings/gpio/gpio.h>
 
 /*
  * Helper to show loaded overlays under: /proc/device-tree/chosen/overlays/
