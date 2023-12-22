@@ -10,7 +10,7 @@
  */
 &{/chosen} {
 	overlays {
-		XFLOW-BB-I2C2-RTC-MAX31329.kernel = __TIMESTAMP__;
+		XFLOW-BB-I2C2-RTC-MAX313XX.kernel = __TIMESTAMP__;
 	};
 };
 
@@ -49,9 +49,9 @@
 	#address-cells = <1>;
 	#size-cells = <0>;
 
-	extrtc: max31329@68 {
+	extrtc: max313xx@68 {
 		status = "okay";
-		compatible = "maxim,max31329";
+		compatible = "maxim,max313xx";
 		reg = <0x68>;
 	};
 };
