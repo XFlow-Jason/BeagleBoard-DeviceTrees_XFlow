@@ -192,6 +192,7 @@ install_arch_arm: $(ARCH_DTB) $(ARCH_DTB_OVERLAYS)
 	# install Device Tree
 	mkdir -p /boot/dtbs/$(KERNEL_VERSION)/overlays/
 	cp -v $(obj)/*.dtb /boot/dtbs/$(KERNEL_VERSION)/
+	chmod 755 /boot/dtbs/$(KERNEL_VERSION)/*
 	cp -v $(obj_overlays)/*.dtbo /boot/dtbs/$(KERNEL_VERSION)/overlays
 	chmod 755 /boot/dtbs/$(KERNEL_VERSION)/overlays/*
 
