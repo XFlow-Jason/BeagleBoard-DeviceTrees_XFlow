@@ -190,6 +190,8 @@ install_arch_arm: $(ARCH_DTB) $(ARCH_DTB_OVERLAYS)
 	mkdir -p /boot/dtbs/$(KERNEL_VERSION)/overlays/
 	cp -v src/arm/ti/omap/*.dtb /boot/dtbs/$(KERNEL_VERSION)/
 	cp -v src/arm/overlays/*.dtbo /boot/dtbs/$(KERNEL_VERSION)/overlays
+	chmod 755 /boot/dtbs/$(KERNEL_VERSION)/overlays/*
+
 
 PHONY += install_arch_arm64
 install_arch_arm64: $(ARCH_DTB) $(ARCH_DTB_OVERLAYS)
