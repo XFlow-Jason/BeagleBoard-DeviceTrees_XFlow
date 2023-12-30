@@ -30,7 +30,7 @@
 	bb_uart4_pins: pinmux_bb_uart4_pins {
 		pinctrl-single,pins = <
 			AM33XX_PADCONF(AM335X_PIN_GPMC_WPN, PIN_OUTPUT, MUX_MODE6)	/* P9_13 gpmc_wpn.uart4_txd_mux2 */
-			AM33XX_PADCONF(AM335X_PIN_GPMC_WAIT0, PIN_INPUT, MUX_MODE6)	/* P9_13 gpmc_wait0.uart4_rxd_mux2 */
+			AM33XX_PADCONF(AM335X_PIN_GPMC_WAIT0, PIN_INPUT, MUX_MODE6)	/* P9_11 gpmc_wait0.uart4_rxd_mux2 */
 		>;
 	};
 };

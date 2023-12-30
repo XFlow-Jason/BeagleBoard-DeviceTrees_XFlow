@@ -1,0 +1,141 @@
+/dts-v1/;
+/plugin/;
+
+#include <dt-bindings/gpio/gpio.h>
+#include <dt-bindings/pinctrl/am33xx.h>
+
+/*
+ * Helper to show loaded overlays under: /proc/device-tree/chosen/overlays/
+ */
+&{/chosen} {
+	overlays {
+		XFLOW-BB-INPUT-00A0.kernel = __TIMESTAMP__;
+	};
+};
+
+/*
+ * Free up the pins used by the cape from the pinmux helpers.
+ */
+&ocp {
+    P8_15_pinmux { status = "disabled"; };	/* P8_14 (U13) gpmc_ad15.gpio1_15 */
+    P8_27_pinmux { status = "disabled"; };	/* P8_27 (U5) lcd_vsync.gpio2_22 */
+    P8_28_pinmux { status = "disabled"; };	/* P8_28 (V5) lcd_pclk.gpio2_24 */
+    P8_29_pinmux { status = "disabled"; };	/* P8_29 (R5) lcd_hsync.gpio2_23 */
+    P8_30_pinmux { status = "disabled"; };	/* P8_30 (R6) lcd_ac_bias_en.gpio2_25 */
+    P8_46_pinmux { status = "disabled"; };	/* P8_46 (R2) lcd_data1.gpio2_07 */
+    P8_45_pinmux { status = "disabled"; };	/* P8_45 (R1) lcd_data0.gpio2_06 */
+	P8_44_pinmux { status = "disabled"; };	/* P8_44 (R4) lcd_data3.gpio2_09 */
+	P8_43_pinmux { status = "disabled"; };	/* P8_43 (R3) lcd_data2.gpio2_08 */
+	P8_42_pinmux { status = "disabled"; };	/* P8_42 (T2) lcd_data5.gpio2_11 */
+	P8_41_pinmux { status = "disabled"; };	/* P8_41 (T1) lcd_data4.gpio2_10 */
+	P8_40_pinmux { status = "disabled"; };	/* P8_40 (T4) lcd_data7.gpio2_13 */
+	P8_39_pinmux { status = "disabled"; };	/* P8_39 (T3) lcd_data6.gpio2_12 */
+
+};
+
+&am33xx_pinmux {
+	bb_xflow_gpio_input_pins: pinmux_bb_xflow_gpio_input_pins {
+		pinctrl-single,pins = <
+            AM33XX_PADCONF(AM335X_PIN_GPMC_AD15, PIN_INPUT_PULLDOWN, MUX_MODE7)	/* P8_15: Input_supercap */
+            AM33XX_PADCONF(AM335X_PIN_LCD_VSYNC, PIN_INPUT_PULLDOWN, MUX_MODE7)	/* P8_27: Input1 */
+            AM33XX_PADCONF(AM335X_PIN_LCD_PCLK, PIN_INPUT_PULLDOWN, MUX_MODE7)	/* P8_28: Input2 */
+            AM33XX_PADCONF(AM335X_PIN_LCD_HSYNC, PIN_INPUT_PULLDOWN, MUX_MODE7)	/* P8_29: Input3 */
+            AM33XX_PADCONF(AM335X_PIN_LCD_AC_BIAS_EN, PIN_INPUT_PULLDOWN, MUX_MODE7)	/* P8_30: Input4 */
+            AM33XX_PADCONF(AM335X_PIN_LCD_DATA1, PIN_INPUT_PULLDOWN, MUX_MODE7)	/* P8_46: Input5 */
+            AM33XX_PADCONF(AM335X_PIN_LCD_DATA0, PIN_INPUT_PULLDOWN, MUX_MODE7)	/* P8_45: Input6 */
+            AM33XX_PADCONF(AM335X_PIN_LCD_DATA3, PIN_INPUT_PULLDOWN, MUX_MODE7)	/* P8_44: Input7 */
+            AM33XX_PADCONF(AM335X_PIN_LCD_DATA2, PIN_INPUT_PULLDOWN, MUX_MODE7)	/* P8_43: Input8 */
+            AM33XX_PADCONF(AM335X_PIN_LCD_DATA5, PIN_INPUT_PULLDOWN, MUX_MODE7)	/* P8_42: Input9 */
+            AM33XX_PADCONF(AM335X_PIN_LCD_DATA4, PIN_INPUT_PULLDOWN, MUX_MODE7)	/* P8_41: Input10 */
+            AM33XX_PADCONF(AM335X_PIN_LCD_DATA7, PIN_INPUT_PULLDOWN, MUX_MODE7)	/* P8_40: Input11 */
+            AM33XX_PADCONF(AM335X_PIN_LCD_DATA6, PIN_INPUT_PULLDOWN, MUX_MODE7)	/* P8_39: Input12 */
+
+		>;
+	};
+};
+
+&{/} {
+	xflow_inputs {
+		pinctrl-names = "default";
+		pinctrl-0 = <&bb_xflow_gpio_input_pins>;
+
+        scinx@1 {
+			label = "xflow-supercap-input-in1";
+			gpios = <&gpio1 15 GPIO_ACTIVE_HIGH>;
+			default-state = "off";
+		};
+
+		inx@1 {
+			label = "xflow-input-in1";
+			gpios = <&gpio2 22 GPIO_ACTIVE_HIGH>;
+			default-state = "off";
+		};
+
+        inx@2 {
+			label = "xflow-input-in2";
+			gpios = <&gpio2 24 GPIO_ACTIVE_HIGH>;
+			default-state = "off";
+		};
+
+        inx@3 {
+			label = "xflow-input-in3";
+			gpios = <&gpio2 23 GPIO_ACTIVE_HIGH>;
+			default-state = "off";
+		};
+
+        inx@4 {
+			label = "xflow-input-in4";
+			gpios = <&gpio2 25 GPIO_ACTIVE_HIGH>;
+			default-state = "off";
+		};
+
+        inx@5 {
+			label = "xflow-input-in5";
+			gpios = <&gpio2 07 GPIO_ACTIVE_HIGH>;
+			default-state = "off";
+		};
+
+        inx@6 {
+			label = "xflow-input-in6";
+			gpios = <&gpio2 06 GPIO_ACTIVE_HIGH>;
+			default-state = "off";
+		};
+
+        inx@7 {
+			label = "xflow-input-in7";
+			gpios = <&gpio2 9 GPIO_ACTIVE_HIGH>;
+			default-state = "off";
+		};
+
+        inx@8 {
+			label = "xflow-input-in8";
+			gpios = <&gpio2 8 GPIO_ACTIVE_HIGH>;
+			default-state = "off";
+		};
+
+        inx@9 {
+			label = "xflow-input-in9";
+			gpios = <&gpio2 11 GPIO_ACTIVE_HIGH>;
+			default-state = "off";
+		};
+
+        inx@10 {
+			label = "xflow-input-in10";
+			gpios = <&gpio2 10 GPIO_ACTIVE_HIGH>;
+			default-state = "off";
+		};
+
+        inx@11 {
+			label = "xflow-input-in11";
+			gpios = <&gpio2 13 GPIO_ACTIVE_HIGH>;
+			default-state = "off";
+		};
+
+        inx@12 {
+			label = "xflow-input-in12";
+			gpios = <&gpio2 12 GPIO_ACTIVE_HIGH>;
+			default-state = "off";
+		};
+
+	};
+};

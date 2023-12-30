@@ -1,0 +1,105 @@
+// SPDX-License-Identifier: GPL-2.0-only
+/*
+ * Copyright (C) 2015 Robert Nelson <robertcnelson@gmail.com>
+ * Copyright (C) 2019 Amilcar Lucas <amilcar.lucas@iav.de>
+ */
+
+/dts-v1/;
+/plugin/;
+
+#include <dt-bindings/gpio/gpio.h>
+#include <dt-bindings/pinctrl/am33xx.h>
+
+/*
+ * Helper to show loaded overlays under: /proc/device-tree/chosen/overlays/
+ */
+&{/chosen} {
+	overlays {
+		XFLOW-BB-RELAY-00A2.kernel = __TIMESTAMP__;
+	};
+};
+
+/*
+ * Free up the pins used by the cape from the pinmux helpers.
+ */
+&ocp {
+	P9_12_pinmux { status = "disabled"; };	/* P9_12 (U18) gpmc_be1n.gpio1_28 */
+	P9_14_pinmux { status = "disabled"; };	/* P9_14 (U14) gpmc_a2.gpio1_18 */
+	P9_16_pinmux { status = "disabled"; };	/* P9_16 (T14) gpmc_a3.gpio1_19 */
+	P9_23_pinmux { status = "disabled"; };	/* P9_23 (V14) gpmc_a1.gpio1_17 */
+	P9_25_pinmux { status = "disabled"; };	/* P9_25 (A14) mcasp0_aclkx.gpio3_21 */
+	P9_27_pinmux { status = "disabled"; };	/* P9_27 (C13) mcasp0_fsr.gpio3_19 */
+	P9_41_pinmux { status = "disabled"; };	/* P9_41 (D14) xdma_event_intr1.gpio0_20 */
+	P9_42_pinmux { status = "disabled"; };	/* P9_42 (C18) eCAPO_in_PWM0_out.gpio0_07 */
+};
+
+&am33xx_pinmux {
+	bb_xflow_gpio_relay_pins: pinmux_bb_xflow_gpio_relay_pins {
+		pinctrl-single,pins = <
+			AM33XX_PADCONF(AM335X_PIN_GPMC_BEN1, PIN_OUTPUT_PULLDOWN, MUX_MODE7)	/* P9_12: Relay1 */
+			AM33XX_PADCONF(AM335X_PIN_GPMC_A2, PIN_OUTPUT_PULLDOWN, MUX_MODE7)	/* P9_14: Relay2 */
+			AM33XX_PADCONF(AM335X_PIN_GPMC_A3, PIN_OUTPUT_PULLDOWN, MUX_MODE7)	/* P9_16: Relay3 */
+			AM33XX_PADCONF(AM335X_PIN_GPMC_A1, PIN_OUTPUT_PULLDOWN, MUX_MODE7)	/* P9_23: Relay4 */
+			AM33XX_PADCONF(AM335X_PIN_MCASP0_AHCLKX, PIN_OUTPUT_PULLDOWN, MUX_MODE7)	/* P9_25: Relay5 */
+			AM33XX_PADCONF(AM335X_PIN_MCASP0_FSR, PIN_OUTPUT_PULLDOWN, MUX_MODE7)		/* P9_27: Relay6 */
+			AM33XX_PADCONF(AM335X_PIN_XDMA_EVENT_INTR1, PIN_OUTPUT_PULLDOWN, MUX_MODE7)	/* P9_41: Relay7 */
+			AM33XX_PADCONF(AM335X_PIN_ECAP0_IN_PWM0_OUT, PIN_OUTPUT_PULLDOWN, MUX_MODE7)	/* P9_42: Relay8 */
+		>;
+	};
+};
+
+&{/} {
+	xflow_relays {
+		pinctrl-names = "default";
+		pinctrl-0 = <&bb_xflow_gpio_relay_pins>;
+
+		jpx@1 {
+			label = "-jp1";
+			gpios = <&gpio1 28 GPIO_ACTIVE_HIGH>;
+			default-state = "off";
+		};
+
+		jpx@2 {
+			label = "xflow-relay-jp2";
+			gpios = <&gpio1 18 GPIO_ACTIVE_HIGH>;
+			default-state = "off";
+		};
+
+		jpx@3 {
+			label = "xflow-relay-jp3";
+			gpios = <&gpio1 19 GPIO_ACTIVE_HIGH>;
+			default-state = "off";
+		};
+
+		jpx@4 {
+			label = "xflow-relay-jp4";
+			gpios = <&gpio1 17 GPIO_ACTIVE_HIGH>;
+			default-state = "off";
+		};
+
+		jpx@5 {
+			label = "xflow-relay-jp5";
+			gpios = <&gpio3 21 GPIO_ACTIVE_HIGH>;
+			default-state = "off";
+		};
+
+		jpx@6 {
+			label = "xflow-relay-jp6";
+			gpios = <&gpio3 19 GPIO_ACTIVE_HIGH>;
+			default-state = "off";
+		};
+
+		jpx@7 {
+			label = "xflow-relay-jp7";
+			gpios = <&gpio0 20 GPIO_ACTIVE_HIGH>;
+			default-state = "off";
+		};
+
+		jpx@8 {
+			label = "xflow-relay-jp8";
+			gpios = <&gpio0 07 GPIO_ACTIVE_HIGH>;
+			default-state = "off";
+		};
+
+	};
+};
