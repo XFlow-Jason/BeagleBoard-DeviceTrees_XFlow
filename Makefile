@@ -192,6 +192,7 @@ install_arch_arm: $(ARCH_DTB) $(ARCH_DTB_OVERLAYS)
 	chmod 755 /boot/dtbs/$(KERNEL_VERSION)/*
 	cp -v src/arm/overlays/*.dtbo /boot/dtbs/$(KERNEL_VERSION)/overlays || true
 	chmod 755 /boot/dtbs/$(KERNEL_VERSION)/overlays/*
+	cp /boot/dtbs/$(KERNEL_VERSION)/overlays/*.dtbo /boot/dtbs/$(KERNEL_VERSION)/ || true
 
 PHONY += install_arch_arm64
 install_arch_arm64: $(ARCH_DTB) $(ARCH_DTB_OVERLAYS)
