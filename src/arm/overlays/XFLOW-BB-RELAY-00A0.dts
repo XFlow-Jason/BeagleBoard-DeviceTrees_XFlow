@@ -60,7 +60,7 @@
 		};
 
 		jpx@2 {
-			label = "xflow-relay-jp2";
+			label = "xflow-relay-jp2"; 
 			gpios = <&gpio1 18 GPIO_ACTIVE_HIGH>;
 			default-state = "off";
 		};

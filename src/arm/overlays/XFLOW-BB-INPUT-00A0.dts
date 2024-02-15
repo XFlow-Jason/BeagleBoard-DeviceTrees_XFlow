@@ -30,7 +30,7 @@
 	P8_41_pinmux { status = "disabled"; };	/* P8_41 (T1) lcd_data4.gpio2_10 */
 	P8_40_pinmux { status = "disabled"; };	/* P8_40 (T4) lcd_data7.gpio2_13 */
 	P8_39_pinmux { status = "disabled"; };	/* P8_39 (T3) lcd_data6.gpio2_12 */
-
+	
 };
 
 &am33xx_pinmux {
@@ -49,7 +49,7 @@
             AM33XX_PADCONF(AM335X_PIN_LCD_DATA4, PIN_INPUT_PULLDOWN, MUX_MODE7)	/* P8_41: Input10 */
             AM33XX_PADCONF(AM335X_PIN_LCD_DATA7, PIN_INPUT_PULLDOWN, MUX_MODE7)	/* P8_40: Input11 */
             AM33XX_PADCONF(AM335X_PIN_LCD_DATA6, PIN_INPUT_PULLDOWN, MUX_MODE7)	/* P8_39: Input12 */
-
+            
 		>;
 	};
 };
